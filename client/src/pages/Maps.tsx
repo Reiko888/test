@@ -1,8 +1,8 @@
-import { useState } from "react";
 import DisplayView from "@/components/DisplayView";
+import { useWebSocket } from "@/contexts/WebSocketContext";
 
 export default function Maps() {
-  const [bannedItems] = useState<string[]>([]);
+  const { banState } = useWebSocket();
 
-  return <DisplayView category="maps" bannedItems={bannedItems} />;
+  return <DisplayView category="maps" bannedItems={banState.maps} />;
 }

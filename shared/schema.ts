@@ -16,3 +16,21 @@ export const insertUserSchema = createInsertSchema(users).pick({
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
+
+export interface BanState {
+  killerPerks: string[];
+  survivorPerks: string[];
+  maps: string[];
+  killers: string[];
+}
+
+export const banStateSchema = z.object({
+  killerPerks: z.array(z.string()),
+  survivorPerks: z.array(z.string()),
+  maps: z.array(z.string()),
+  killers: z.array(z.string()),
+});
+
+export type WSMessage = 
+  | { type: 'ban_update'; data: BanState }
+  | { type: 'reset_all' };

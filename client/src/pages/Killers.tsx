@@ -1,8 +1,8 @@
-import { useState } from "react";
 import DisplayView from "@/components/DisplayView";
+import { useWebSocket } from "@/contexts/WebSocketContext";
 
 export default function Killers() {
-  const [bannedItems] = useState<string[]>([]);
+  const { banState } = useWebSocket();
 
-  return <DisplayView category="killers" bannedItems={bannedItems} />;
+  return <DisplayView category="killers" bannedItems={banState.killers} />;
 }
